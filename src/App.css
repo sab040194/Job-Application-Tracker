@@ -1,0 +1,70 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+  margin-right: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.add-button, .edit-button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.job-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.job-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.delete-button {
+  margin-left: 10px;
+  padding: 2px 5px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.job-item small {
+  display: block;
+  color: #666;
+}
+
+.status {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.status.applied {
+  color: #1E90FF; /* Blue */
+}
+
+.status.interview {
+  color: #FF8C00; /* Dark Orange */
+}
+
+.status.offer {
+  color: #32CD32; /* Lime Green */
+}
+
+.status.rejected {
+  color: #DC143C; /* Crimson */
+}

@@ -1,51 +1,16 @@
-import React, { useState, useEffect } from 'react';
+// JobTrackerNoStorage.js
+import React, { useState } from 'react';
 import './App.css';
 
-const JobItem = ({ job, index, onDelete, onEdit }) => (
-  <li className="job-item">
-    <span>{index + 1}. </span>
-    <strong>{job.company}</strong> - {job.position} - 
-    <span className={`status ${job.status.toLowerCase()}`}>{job.status}</span><br/>
-    <small>Date: {job.date} | Contact Person: {job.contactPerson} | Remarks: {job.remarks}</small>
-    <button onClick={() => onEdit(job.id)} className="edit-button">
-      Edit
-    </button>
-    <button onClick={() => onDelete(job.id)} className="delete-button">
-      Delete
-    </button>
-  </li>
-);
-
-const JobTracker = () => {
-  const [jobs, setJobs] = useState(() => {
-    const savedJobs = localStorage.getItem('jobs');
-    return savedJobs ? JSON.parse(savedJobs) : [];
-  });
-
-  const [newJob, setNewJob] = useState({
-    company: '',
-    position: '',
-    status: 'Applied',
-    date: '',
-    contactPerson: '',
-    remarks: '',
-  });
-
-  const [editJobId, setEditJobId] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem('jobs', JSON.stringify(jobs));
-  }, [jobs]);
+const JobTrackerNoStorage = () => {
+  const [jobs, setJobs] = useState([]);
+  const [newJob, setNewJob] = useState({ company: '', position: '', status: 'Applied' });
+  const [filter, setFilter] = useState('All');
 
   const addJob = () => {
     if (newJob.company && newJob.position) {
-      if (editJobId) {
-        setJobs(jobs.map(job => (job.id === editJobId ? { ...newJob, id: job.id } : job)));
-        setEditJobId(null);
-      } else {
-        setJobs([...jobs, { ...newJob, id: Date.now() }]);
-      }
-      setNewJob({ company: '', position: '', status: 'Applied', date: '', contactPerson: '', remarks: '' });
+      setJobs([...jobs, { ...newJob, id: Date.now() }]);
+      setNewJob({ company: '', position: '', status: 'Applied' });
     }
   };
 
@@ -56,13 +21,29 @@ const JobTracker = () => {
   const editJob = (id) => {
     const jobToEdit = jobs.find(job => job.id === id);
     setNewJob({ ...jobToEdit });
-    setEditJobId(id);
+    deleteJob(id);
+  };
+
+  const getColorForStatus = (status) => {
+    switch (status) {
+      case 'Applied':
+        return 'blue';
+      case 'Interview':
+        return 'orange';
+      case 'Offer':
+        return 'green';
+      case 'Rejected':
+        return 'red';
+      default:
+        return 'black';
+    }
   };
 
   return (
-    <div className="container">
-      <h1>Job Application Tracker</h1>
-      <div className="form-container">
+    <div className="job-tracker">
+      <h1>Job Tracker</h1>
+      
+      <div className="input-section">
         <input
           type="text"
           placeholder="Company"
@@ -75,50 +56,47 @@ const JobTracker = () => {
           value={newJob.position}
           onChange={(e) => setNewJob({ ...newJob, position: e.target.value })}
         />
-        <input
-          type="date"
-          placeholder="Date"
-          value={newJob.date}
-          onChange={(e) => setNewJob({ ...newJob, date: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Contact Person"
-          value={newJob.contactPerson}
-          onChange={(e) => setNewJob({ ...newJob, contactPerson: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Remarks"
-          value={newJob.remarks}
-          onChange={(e) => setNewJob({ ...newJob, remarks: e.target.value })}
-        />
         <select
           value={newJob.status}
           onChange={(e) => setNewJob({ ...newJob, status: e.target.value })}
         >
-          <option>Applied</option>
-          <option>Interview</option>
-          <option>Offer</option>
-          <option>Rejected</option>
+          <option value="Applied">Applied</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer">Offer</option>
+          <option value="Rejected">Rejected</option>
         </select>
-        <button onClick={addJob} className="add-button">
-          {editJobId ? 'Update Job' : 'Add Job'}
-        </button>
+        <button onClick={addJob}>Add Job</button>
       </div>
-      <ul className="job-list">
-        {jobs.map((job, index) => (
-          <JobItem
-            key={job.id}
-            job={job}
-            index={index}
-            onDelete={deleteJob}
-            onEdit={editJob}
-          />
+
+      <div className="filter-section">
+        <label className="filter-label">Filter by Status:</label>
+        <select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="filter-dropdown"
+        >
+          <option value="All">All</option>
+          <option value="Applied">Applied</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer">Offer</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+
+      <ul>
+        {jobs
+          .filter(job => filter === 'All' || job.status === filter)
+          .map((job, index) => (
+            <li key={job.id} className="job-item">
+              <strong>{index + 1}. {job.company}</strong> - {job.position} - 
+              <span style={{ color: getColorForStatus(job.status) }}>{job.status}</span>
+              <button onClick={() => deleteJob(job.id)} className="delete-button">Delete</button>
+              <button onClick={() => editJob(job.id)} className="edit-button">Edit</button>
+            </li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default JobTracker;
+export default JobTrackerNoStorage;

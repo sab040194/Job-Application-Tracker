@@ -1,70 +1,117 @@
-.container {
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+}
+
+.job-tracker {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 20px;
+  border: 2px solid #4CAF50;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-  font-size: 24px;
+  text-align: center;
+  color: #333333;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.form-container input,
-.form-container select {
-  margin-right: 10px;
-  padding: 5px;
-  margin-bottom: 10px;
+.input-section input,
+.input-section select {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 }
 
-.add-button, .edit-button {
-  padding: 5px 10px;
+.input-section button {
+  padding: 10px;
   background-color: #4CAF50;
   color: white;
   border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.job-list {
+.input-section button:hover {
+  background-color: #45a049;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.filter-dropdown {
+  padding: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+ul {
   list-style-type: none;
   padding: 0;
 }
 
 .job-item {
-  margin-bottom: 10px;
-  padding: 10px;
   border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-item strong {
+  font-size: 1.1em;
+}
+
+.job-item span {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.delete-button,
+.edit-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .delete-button {
-  margin-left: 10px;
-  padding: 2px 5px;
   background-color: #f44336;
   color: white;
-  border: none;
 }
 
-.job-item small {
-  display: block;
-  color: #666;
+.delete-button:hover {
+  background-color: #da190b;
 }
 
-.status {
-  font-weight: bold;
-  margin-left: 5px;
+.edit-button {
+  background-color: #008CBA;
+  color: white;
 }
 
-.status.applied {
-  color: #1E90FF; /* Blue */
-}
-
-.status.interview {
-  color: #FF8C00; /* Dark Orange */
-}
-
-.status.offer {
-  color: #32CD32; /* Lime Green */
-}
-
-.status.rejected {
-  color: #DC143C; /* Crimson */
+.edit-button:hover {
+  background-color: #007bb5;
 }

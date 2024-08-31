@@ -1,117 +1,30 @@
-/* App.css */
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
-}
-
 .job-tracker {
   max-width: 600px;
-  margin: 50px auto;
+  margin: 0 auto;
   padding: 20px;
-  border: 2px solid #4CAF50;
-  border-radius: 15px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-h1 {
-  text-align: center;
-  color: #333333;
-}
-
-.input-section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.input-section input,
-.input-section select {
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-}
-
-.input-section button {
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.input-section button:hover {
-  background-color: #45a049;
-}
-
-.filter-section {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.filter-label {
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.filter-dropdown {
-  padding: 5px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
 
 .job-item {
   border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 10px;
-  background-color: #fafafa;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.job-item strong {
-  font-size: 1.1em;
-}
-
-.job-item span {
-  margin-left: 10px;
-  font-weight: bold;
-}
-
-.delete-button,
-.edit-button {
-  padding: 5px 10px;
-  margin-left: 10px;
-  border: none;
   border-radius: 5px;
-  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.delete-button {
-  background-color: #f44336;
-  color: white;
+input, select {
+  margin-right: 10px;
+  padding: 5px;
 }
 
-.delete-button:hover {
-  background-color: #da190b;
+button {
+  padding: 5px 10px;
+  margin-top: 10px;
 }
 
-.edit-button {
-  background-color: #008CBA;
-  color: white;
-}
-
-.edit-button:hover {
-  background-color: #007bb5;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
